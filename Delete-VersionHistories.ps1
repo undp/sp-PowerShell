@@ -42,6 +42,7 @@ LASTEDIT: $(Get-Date)
 # Revision history
 # # 08 Apr 2020 Creation
 # # 06 May 2020 Update input parameters, retrieve versions of list item
+# # 11 May 2020 Add deletion functionality, script completion
 
 #>
 
@@ -59,7 +60,7 @@ param(
 #endregion ####################################################################
 
 #region MAIN ##################################################################
-########################## MAIN #####################################
+########################## MAIN ###############################################
 if ($start -le $end -and $start -gt 0) {
 	try {
 		Connect-PnPOnline -Url $siteUrl -UseWebLogin
@@ -71,23 +72,31 @@ if ($start -le $end -and $start -gt 0) {
 		$context.Load($versions)
 		$context.ExecuteQuery()
 
-		$amountToDelete = 1 + $end - $start
+		$ctr = $versions.Count - 1
+		$currentVersion = $versions[$ctr].VersionLabel -as [int]
+		$deleted = 0
 
-		if ($end -le $versions.Count) {
-			while ($amountToDelete -gt 0 -and $versions.Count -gt 1) {
-				Write-Host $versions[$versions.Count - $start].VersionLabel
-				$amountToDelete--
+		while ($currentVersion -le $end -and $ctr -ge 0) {
+			if ($currentVersion -ge $start -and -not $versions[$ctr].IsCurrentVersion) {
+				Write-Host $versions[$ctr].VersionLabel
+				$versions[$ctr].DeleteObject()
+				$context.ExecuteQuery()
+
+				$deleted++
 			}
-		} else {
-			Write-Host -ForegroundColor "red" "Please ensure the start and end is a valid range."
+			
+			$currentVersion = $versions[--$ctr].VersionLabel -as [int]
 		}
+
+		Write-Host "Total versions deleted: ${deleted}"
 	} catch {
 		$exceptionName = $_.Exception.GetType().Name
+		Write-Error $_
 		Write-Host -ForegroundColor "red" "[${exceptionName}]"
 	} finally {
 		Disconnect-PnPOnline
 	}
 } else {
 		Write-Host -ForegroundColor "red" "Start cannot be below 1 or greater than end."
-	}
+	}  
 #endregion ####################################################################
