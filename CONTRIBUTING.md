@@ -2,7 +2,7 @@
 
 Looking to help out?  You've come to the right place.
 
-If you're looking for more information on this repository take a look at the [README.md](..\README.md).
+If you're looking for more information on this repository take a look at the [README.md](../README.md).
 
 Maintained by **[@dantshin](https://github.com/dantshin)**
 
@@ -43,4 +43,4 @@ Thank you to all of our contributors, no matter how big or small the contributio
 
 ### Licensing
 
-sp-PowerShell is licensed under the [MIT license](..\LICENSE.md).
+sp-PowerShell is licensed under the [MIT license](../LICENSE.md).
