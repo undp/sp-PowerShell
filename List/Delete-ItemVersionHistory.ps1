@@ -20,12 +20,6 @@
 	.PARAMETER End
 		The version number to stop deleting at (inclusively).
 
-	.INPUTS
-		System.String,System.String,System.String,System.String,System.String
-
-	.OUTPUTS
-		None
-
 	.EXAMPLE
 		Delete-ItemVersionHistory.ps1 -SiteUrl $SiteUrl -List $List -ItemId $ItemId -Start $Start -End $End
 

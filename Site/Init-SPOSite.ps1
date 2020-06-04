@@ -11,9 +11,6 @@
 	.EXAMPLE
 		Init-SPOSite.ps1 -SiteUrl "https://undp.sharepoint.com/teams/MyTeam"
 
-	.INPUTS
-		System.String,System.Int32
-
 	.OUTPUTS
 		PSObject
 
