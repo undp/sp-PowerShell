@@ -14,7 +14,7 @@
 
 ### Installing
 
-Simply clone the repository to get started.
+Clone repository to corresponding [PowerShell Modules location](https://docs.microsoft.com/en-us/powershell/scripting/developer/module/installing-a-powershell-module).
 
 ## Authors
 
