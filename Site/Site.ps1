@@ -35,13 +35,13 @@ function Get-WebInfo {
 		$obj | Add-Member -MemberType NoteProperty -Name "URL" -Value $web.Url
 		$obj | Add-Member -MemberType NoteProperty -Name "Template" -Value "$($web.WebTemplate)#$($web.Configuration)"
 		$obj | Add-Member -MemberType NoteProperty -Name "Number of Lists/Libraries" -Value $web.Lists.Count
-		$obj | Add-Member -MemberType NoteProperty -Name "Limited-access user permission lockdown mode" -Value $lockdownMode
 		$obj | Add-Member -MemberType NoteProperty -Name "Site Logo Path" -Value $web.SiteLogoUrl
 		$obj | Add-Member -MemberType NoteProperty -Name "Language" -Value $web.Language
 		$obj | Add-Member -MemberType NoteProperty -Name "Locale" -Value $web.RegionalSettings.LocaleId
 		$obj | Add-Member -MemberType NoteProperty -Name "Theme" -Value $theme.Name
 		$obj | Add-Member -MemberType NoteProperty -Name "Owner" -Value $site.Owner.Title
 		$obj | Add-Member -MemberType NoteProperty -Name "Size (% Used)" -Value $site.Usage.StoragePercentageUsed
+		$obj | Add-Member -MemberType NoteProperty -Name "Limited-access user permission lockdown mode" -Value $lockdownMode
 
 		$obj
 	} catch {
